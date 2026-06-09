@@ -1,6 +1,6 @@
 package mg.tokimahery.rmz.model;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 
-public record Sale(String id, LocalDate date, Customer customer, List<SaleItem> items) {}
+public record Sale(String id, Instant date, Customer customer, List<SaleItem> items) {}

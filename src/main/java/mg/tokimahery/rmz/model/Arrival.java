@@ -1,6 +1,6 @@
 package mg.tokimahery.rmz.model;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 
-public record Arrival(String id, LocalDate date, List<ArrivalItem> items) {}
+public record Arrival(String id, Instant date, List<ArrivalItem> items) {}
