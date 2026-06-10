@@ -26,5 +26,5 @@ public class JArrival {
   @CreationTimestamp private Instant date;
 
   @OneToMany(mappedBy = "arrival")
-  private List<ArrivalItem> items;
+  private List<JArrivalItem> items;
 }

@@ -30,8 +30,8 @@ public class JSale {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "customer_id", nullable = false)
-  private Customer customer;
+  private JCustomer customer;
 
   @OneToMany(mappedBy = "sale")
-  private List<SaleItem> items;
+  private List<JSaleItem> items;
 }

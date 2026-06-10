@@ -18,11 +18,11 @@ public class JSaleItem {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "sale_id", nullable = false)
-  private Sale sale;
+  private JSale sale;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "book_copy_id", nullable = false)
-  private BookCopy bookCopy;
+  private JBookCopy bookCopy;
 
   @Check(constraints = "quantity > 0")
   private int quantity;

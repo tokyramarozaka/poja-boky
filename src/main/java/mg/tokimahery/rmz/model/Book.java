@@ -2,4 +2,4 @@ package mg.tokimahery.rmz.model;
 
 import java.util.List;
 
-public record Book(String id, String title, int pages, List<Author> authors, List<Genre> genres) {}
+public record Book(String id, String isbn, String title, int pages, List<Author> authors, List<Genre> genres) {}

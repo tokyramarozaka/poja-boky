@@ -25,11 +25,11 @@ public class JArrivalItem {
 
   @ManyToOne
   @JoinColumn(name = "arrival_id", nullable = false)
-  private Arrival arrival;
+  private JArrival arrival;
 
   @ManyToOne
   @JoinColumn(name = "book_copy_id", nullable = false)
-  private BookCopy bookCopy;
+  private JBookCopy bookCopy;
 
   @Check(constraints = "quantity > 0")
   private int quantity;

@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import mg.tokimahery.rmz.model.Genre;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.UuidGenerator;
@@ -31,6 +32,9 @@ public class JBook {
 
   @Check(constraints = "pages > 0")
   private int pages;
+
+  @Column(nullable = false)
+  private String isbn;
 
   @ManyToMany
   @JoinTable(
