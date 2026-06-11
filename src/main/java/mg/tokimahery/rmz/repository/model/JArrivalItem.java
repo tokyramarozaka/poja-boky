@@ -9,8 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import mg.tokimahery.rmz.model.Arrival;
-import mg.tokimahery.rmz.model.BookCopy;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.UuidGenerator;
 

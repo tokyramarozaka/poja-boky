@@ -6,8 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import mg.tokimahery.rmz.model.BookCopy;
-import mg.tokimahery.rmz.model.Sale;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.UuidGenerator;
 
