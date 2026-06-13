@@ -2,22 +2,22 @@ package mg.tokimahery.rmz.service;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import mg.tokimahery.rmz.mapper.CustomerMapper;
-import mg.tokimahery.rmz.model.Customer;
-import mg.tokimahery.rmz.repository.CustomerRepository;
+import mg.tokimahery.rmz.mapper.AdminMapper;
+import mg.tokimahery.rmz.model.Admin;
+import mg.tokimahery.rmz.repository.AdminRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CustomerService {
-  private final CustomerRepository repository;
-  private final CustomerMapper mapper;
+public class AdminService {
+  private final AdminRepository repository;
+  private final AdminMapper mapper;
 
-  public List<Customer> findAll() {
+  public List<Admin> findAll() {
     return mapper.toModel(repository.findAll());
   }
 
-  public Customer findById(String id) {
+  public Admin findById(String id) {
     return mapper.toModel(
         repository
             .findById(id)

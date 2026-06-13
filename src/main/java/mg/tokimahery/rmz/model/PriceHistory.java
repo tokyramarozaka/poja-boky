@@ -1,5 +1,7 @@
 package mg.tokimahery.rmz.model;
 
 import java.time.LocalDate;
+import lombok.Builder;
 
-public record PriceHistory(String id, double price, LocalDate date) {}
+@Builder
+public record PriceHistory(String id, double price, LocalDate effectiveDate) {}
