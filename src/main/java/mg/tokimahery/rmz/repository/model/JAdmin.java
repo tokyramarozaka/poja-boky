@@ -1,31 +1,36 @@
 package mg.tokimahery.rmz.repository.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.time.Instant;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
-@Table(name = "arrival")
+@Table(name = "admin")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class JArrival {
+public class JAdmin {
   @Id @UuidGenerator private String id;
+  private String firstName;
 
-  @CreationTimestamp private Instant date;
+  @Column(nullable = false)
+  private String lastName;
 
-  @OneToMany(mappedBy = "arrival")
-  private List<JArrivalItem> items;
+  @Column(nullable = false, unique = true)
+  private String email;
+
+  @Column(nullable = false)
+  private String password;
+
+  private String phone;
+  private String address;
 }
