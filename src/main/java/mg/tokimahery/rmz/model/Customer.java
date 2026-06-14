@@ -1,5 +1,6 @@
 package mg.tokimahery.rmz.model;
 
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,7 +10,7 @@ public final class Customer extends User {
 
   @Builder
   public Customer(
-      String id,
+      UUID id,
       String firstName,
       String lastName,
       String email,

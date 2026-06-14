@@ -9,6 +9,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Builder
 public class JSale {
-  @Id @UuidGenerator private String id;
+  @Id @UuidGenerator private UUID id;
   @CreationTimestamp private Instant date;
 
   @ManyToOne(fetch = FetchType.LAZY)

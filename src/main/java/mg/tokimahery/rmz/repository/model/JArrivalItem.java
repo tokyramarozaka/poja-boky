@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Builder
 public class JArrivalItem {
-  @Id @UuidGenerator private String id;
+  @Id @UuidGenerator private UUID id;
 
   @ManyToOne
   @JoinColumn(name = "arrival_id", nullable = false)

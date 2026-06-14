@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JAdmin {
-  @Id @UuidGenerator private String id;
+  @Id @UuidGenerator private UUID id;
   private String firstName;
 
   @Column(nullable = false)

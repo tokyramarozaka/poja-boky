@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArrivalController {
   private final ArrivalService service;
 
-  @GetMapping("/arrival")
+  @GetMapping("/arrivals")
   public List<Arrival> getArrivals() {
     return service.findAll();
   }
 
-  @GetMapping("/arrival/{id}")
+  @GetMapping("/arrivals/{id}")
   public Arrival getArrivalById(@PathVariable String id) {
     return service.findById(id);
   }

@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JGenre {
-  @Id @UuidGenerator private String id;
+  @Id @UuidGenerator private UUID id;
 
   @Column(nullable = false, unique = true)
   private String name;
