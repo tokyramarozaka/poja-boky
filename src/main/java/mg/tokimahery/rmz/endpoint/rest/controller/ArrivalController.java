@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.model.Arrival;
 import mg.tokimahery.rmz.service.ArrivalService;
@@ -15,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArrivalController {
   private final ArrivalService service;
 
-  @GetMapping("/arrival")
+  @GetMapping("/arrivals")
   public List<Arrival> getArrivals() {
     return service.findAll();
   }
 
-  @GetMapping("/arrival/{id}")
-  public Arrival getArrivalById(@PathVariable String id) {
+  @GetMapping("/arrivals/{id}")
+  public Arrival getArrivalById(@PathVariable UUID id) {
     return service.findById(id);
   }
 

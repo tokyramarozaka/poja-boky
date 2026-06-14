@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.model;
 
+import java.util.UUID;
 import lombok.Builder;
 
 @Builder
-public record SaleItem(String id, BookCopy bookCopy, int quantity) {}
+public record SaleItem(UUID id, BookCopy bookCopy, int quantity) {}

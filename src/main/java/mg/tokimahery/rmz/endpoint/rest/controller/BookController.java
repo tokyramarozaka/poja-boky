@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.model.Book;
 import mg.tokimahery.rmz.service.BookService;
@@ -21,7 +22,7 @@ public class BookController {
   }
 
   @GetMapping("/books/{id}")
-  public Book getBookById(@PathVariable("id") String id) {
+  public Book getBookById(@PathVariable("id") UUID id) {
     return service.findById(id);
   }
 

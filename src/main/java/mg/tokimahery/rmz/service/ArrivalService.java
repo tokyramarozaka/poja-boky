@@ -2,6 +2,7 @@ package mg.tokimahery.rmz.service;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.mapper.ArrivalMapper;
 import mg.tokimahery.rmz.model.Arrival;
@@ -18,7 +19,7 @@ public class ArrivalService {
     return repository.findAll().stream().map(mapper::toModel).toList();
   }
 
-  public Arrival findById(String id) {
+  public Arrival findById(UUID id) {
     var optionalArrival = repository.findById(id);
     if (optionalArrival.isEmpty()) {
       throw new RuntimeException("Arrival with id " + id + " not found");

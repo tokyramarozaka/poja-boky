@@ -1,12 +1,13 @@
 package mg.tokimahery.rmz.model;
 
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
 public abstract sealed class User permits Admin, Customer {
-  private final String id;
+  private final UUID id;
   private final String firstName;
   private final String lastName;
   private final String email;

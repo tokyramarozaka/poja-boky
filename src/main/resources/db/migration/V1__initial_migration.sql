@@ -1,6 +1,6 @@
 CREATE TABLE admin
 (
-    id         VARCHAR(255) NOT NULL,
+    id         UUID         NOT NULL,
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -12,23 +12,23 @@ CREATE TABLE admin
 
 CREATE TABLE arrival
 (
-    id   VARCHAR(255) NOT NULL,
+    id   UUID NOT NULL,
     date TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_arrival PRIMARY KEY (id)
 );
 
 CREATE TABLE arrival_item
 (
-    id           VARCHAR(255) NOT NULL,
-    arrival_id   VARCHAR(255) NOT NULL,
-    book_copy_id VARCHAR(255) NOT NULL,
-    quantity     INTEGER      NOT NULL,
+    id           UUID    NOT NULL,
+    arrival_id   UUID    NOT NULL,
+    book_copy_id UUID    NOT NULL,
+    quantity     INTEGER NOT NULL,
     CONSTRAINT pk_arrival_item PRIMARY KEY (id)
 );
 
 CREATE TABLE author
 (
-    id            VARCHAR(255) NOT NULL,
+    id            UUID         NOT NULL,
     full_name     VARCHAR(255) NOT NULL,
     main_language VARCHAR(255) NOT NULL,
     CONSTRAINT pk_author PRIMARY KEY (id)
@@ -36,7 +36,7 @@ CREATE TABLE author
 
 CREATE TABLE book
 (
-    id    VARCHAR(255) NOT NULL,
+    id    UUID         NOT NULL,
     title VARCHAR(255) NOT NULL,
     pages INTEGER      NOT NULL,
     isbn  VARCHAR(255) NOT NULL,
@@ -45,14 +45,14 @@ CREATE TABLE book
 
 CREATE TABLE book_author
 (
-    author_id VARCHAR(255) NOT NULL,
-    book_id   VARCHAR(255) NOT NULL
+    author_id UUID NOT NULL,
+    book_id   UUID NOT NULL
 );
 
 CREATE TABLE book_copy
 (
-    id       VARCHAR(255) NOT NULL,
-    book_id  VARCHAR(255) NOT NULL,
+    id       UUID         NOT NULL,
+    book_id  UUID         NOT NULL,
     format   VARCHAR(255) NOT NULL,
     language VARCHAR(255) NOT NULL,
     CONSTRAINT pk_book_copy PRIMARY KEY (id)
@@ -60,13 +60,13 @@ CREATE TABLE book_copy
 
 CREATE TABLE book_genres
 (
-    book_id  VARCHAR(255) NOT NULL,
-    genre_id VARCHAR(255) NOT NULL
+    book_id  UUID NOT NULL,
+    genre_id UUID NOT NULL
 );
 
 CREATE TABLE customer
 (
-    id         VARCHAR(255) NOT NULL,
+    id         UUID         NOT NULL,
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -79,15 +79,15 @@ CREATE TABLE customer
 
 CREATE TABLE genre
 (
-    id   VARCHAR(255) NOT NULL,
+    id   UUID         NOT NULL,
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk_genre PRIMARY KEY (id)
 );
 
 CREATE TABLE price_history
 (
-    id             VARCHAR(255)     NOT NULL,
-    book_copy_id   VARCHAR(255)     NOT NULL,
+    id             UUID             NOT NULL,
+    book_copy_id   UUID             NOT NULL,
     price          DOUBLE PRECISION NOT NULL,
     effective_date date             NOT NULL,
     CONSTRAINT pk_price_history PRIMARY KEY (id)
@@ -95,18 +95,18 @@ CREATE TABLE price_history
 
 CREATE TABLE sale
 (
-    id          VARCHAR(255) NOT NULL,
+    id          UUID NOT NULL,
     date        TIMESTAMP WITHOUT TIME ZONE,
-    customer_id VARCHAR(255) NOT NULL,
+    customer_id UUID NOT NULL,
     CONSTRAINT pk_sale PRIMARY KEY (id)
 );
 
 CREATE TABLE sale_item
 (
-    id           VARCHAR(255) NOT NULL,
-    sale_id      VARCHAR(255) NOT NULL,
-    book_copy_id VARCHAR(255) NOT NULL,
-    quantity     INTEGER      NOT NULL,
+    id           UUID    NOT NULL,
+    sale_id      UUID    NOT NULL,
+    book_copy_id UUID    NOT NULL,
+    quantity     INTEGER NOT NULL,
     CONSTRAINT pk_sale_item PRIMARY KEY (id)
 );
 
