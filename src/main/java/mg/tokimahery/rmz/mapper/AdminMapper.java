@@ -1,5 +1,3 @@
-package mg.tokimahery.rmz.mapper;
-
 import java.util.List;
 import mg.tokimahery.rmz.model.Admin;
 import mg.tokimahery.rmz.repository.model.JAdmin;
