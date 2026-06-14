@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.service;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.mapper.BookMapper;
 import mg.tokimahery.rmz.model.Book;
@@ -17,7 +18,7 @@ public class BookService {
     return mapper.toModel(repository.findAll());
   }
 
-  public Book findById(String id) {
+  public Book findById(UUID id) {
     return mapper.toModel(
         repository
             .findById(id)

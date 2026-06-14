@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.service;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.mapper.SaleMapper;
 import mg.tokimahery.rmz.model.Sale;
@@ -17,7 +18,7 @@ public class SaleService {
     return repository.findAll().stream().map(mapper::toModel).toList();
   }
 
-  public Sale findSaleById(String id) {
+  public Sale findSaleById(UUID id) {
     return mapper.toModel(
         repository
             .findById(id)

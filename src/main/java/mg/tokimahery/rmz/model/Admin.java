@@ -1,8 +1,7 @@
 package mg.tokimahery.rmz.model;
 
-import lombok.Builder;
-
 import java.util.UUID;
+import lombok.Builder;
 
 public final class Admin extends User {
   @Builder

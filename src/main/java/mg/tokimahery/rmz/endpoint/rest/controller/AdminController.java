@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.model.Admin;
 import mg.tokimahery.rmz.service.AdminService;
@@ -19,7 +20,7 @@ public class AdminController {
   }
 
   @GetMapping("/admin/{id}")
-  public Admin getById(@PathVariable String id) {
+  public Admin getById(@PathVariable UUID id) {
     return service.findById(id);
   }
 }

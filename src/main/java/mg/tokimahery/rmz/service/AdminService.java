@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.service;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.mapper.AdminMapper;
 import mg.tokimahery.rmz.model.Admin;
@@ -17,7 +18,7 @@ public class AdminService {
     return mapper.toModel(repository.findAll());
   }
 
-  public Admin findById(String id) {
+  public Admin findById(UUID id) {
     return mapper.toModel(
         repository
             .findById(id)

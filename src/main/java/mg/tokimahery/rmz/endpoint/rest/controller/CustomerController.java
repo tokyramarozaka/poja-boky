@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.model.Customer;
 import mg.tokimahery.rmz.service.CustomerService;
@@ -19,7 +20,7 @@ public class CustomerController {
   }
 
   @GetMapping("/customers/{id}")
-  public Customer getById(@PathVariable String id) {
+  public Customer getById(@PathVariable UUID id) {
     return service.findById(id);
   }
 }
