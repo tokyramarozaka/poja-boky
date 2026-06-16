@@ -22,9 +22,9 @@ public class ArrivalService {
 
   public Arrival findById(UUID id) {
     return mapper.toModel(
-            repository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException("Arrival with id " + id + " not found")));
+        repository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Arrival with id " + id + " not found")));
   }
 
   @Transactional

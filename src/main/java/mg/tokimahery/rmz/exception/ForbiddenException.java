@@ -2,8 +2,8 @@ package mg.tokimahery.rmz.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class ForbiddenException extends ApiException{
-    public ForbiddenException(String message) {
-        super(message, HttpStatus.FORBIDDEN);
-    }
+public class ForbiddenException extends ApiException {
+  public ForbiddenException(String message) {
+    super(message, HttpStatus.FORBIDDEN);
+  }
 }

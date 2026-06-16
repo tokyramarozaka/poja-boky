@@ -2,7 +2,6 @@ package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import java.util.List;
 import java.util.UUID;
-
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.model.BookCopy;
 import mg.tokimahery.rmz.service.BookCopyService;
