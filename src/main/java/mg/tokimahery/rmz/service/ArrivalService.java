@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import mg.tokimahery.rmz.exception.NotFoundException;
 import mg.tokimahery.rmz.mapper.ArrivalMapper;
 import mg.tokimahery.rmz.model.Arrival;
 import mg.tokimahery.rmz.repository.ArrivalRepository;
@@ -20,11 +21,10 @@ public class ArrivalService {
   }
 
   public Arrival findById(UUID id) {
-    var optionalArrival = repository.findById(id);
-    if (optionalArrival.isEmpty()) {
-      throw new RuntimeException("Arrival with id " + id + " not found");
-    }
-    return mapper.toModel(optionalArrival.get());
+    return mapper.toModel(
+            repository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Arrival with id " + id + " not found")));
   }
 
   @Transactional

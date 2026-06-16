@@ -3,6 +3,7 @@ package mg.tokimahery.rmz.service;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import mg.tokimahery.rmz.exception.NotFoundException;
 import mg.tokimahery.rmz.mapper.SaleMapper;
 import mg.tokimahery.rmz.model.Sale;
 import mg.tokimahery.rmz.repository.SaleRepository;
@@ -22,7 +23,7 @@ public class SaleService {
     return mapper.toModel(
         repository
             .findById(id)
-            .orElseThrow(() -> new RuntimeException("Sale with id " + id + " not found")));
+            .orElseThrow(() -> new NotFoundException("Sale with id " + id + " not found")));
   }
 
   public List<Sale> create(List<Sale> sales) {

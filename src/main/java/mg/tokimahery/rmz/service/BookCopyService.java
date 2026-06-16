@@ -1,6 +1,8 @@
 package mg.tokimahery.rmz.service;
 
 import java.util.List;
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.mapper.BookCopyMapper;
 import mg.tokimahery.rmz.model.BookCopy;
@@ -12,6 +14,10 @@ import org.springframework.stereotype.Service;
 public class BookCopyService {
   private final BookCopyRepository repository;
   private final BookCopyMapper mapper;
+
+  public BookCopy findById(UUID id) {
+    return mapper.toModel(repository.findById(id).orElseThrow());
+  }
 
   public List<BookCopy> create(List<BookCopy> bookCopies) {
     return bookCopies.stream().map(this::create).toList();

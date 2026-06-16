@@ -3,6 +3,8 @@ package mg.tokimahery.rmz.service;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import mg.tokimahery.rmz.exception.BadRequestException;
+import mg.tokimahery.rmz.exception.NotFoundException;
 import mg.tokimahery.rmz.mapper.AdminMapper;
 import mg.tokimahery.rmz.model.Admin;
 import mg.tokimahery.rmz.repository.AdminRepository;
@@ -22,6 +24,6 @@ public class AdminService {
     return mapper.toModel(
         repository
             .findById(id)
-            .orElseThrow(() -> new RuntimeException("Customer with id " + id + " not found")));
+            .orElseThrow(() -> new NotFoundException("Customer with id " + id + " not found")));
   }
 }

@@ -3,6 +3,8 @@ package mg.tokimahery.rmz.service;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import mg.tokimahery.rmz.exception.BadRequestException;
+import mg.tokimahery.rmz.exception.NotFoundException;
 import mg.tokimahery.rmz.mapper.BookMapper;
 import mg.tokimahery.rmz.model.Book;
 import mg.tokimahery.rmz.repository.BookRepository;
@@ -22,7 +24,7 @@ public class BookService {
     return mapper.toModel(
         repository
             .findById(id)
-            .orElseThrow(() -> new RuntimeException("Book with id " + id + " not found")));
+            .orElseThrow(() -> new NotFoundException("Book with id " + id + " not found")));
   }
 
   public List<Book> create(List<Book> toSave) {
