@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -23,8 +24,11 @@ public class GlobalExceptionHandler {
                 Instant.now()));
   }
 
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ExceptionBody> handleMethodArgumentNotValidException(
+  @ExceptionHandler({
+    MethodArgumentNotValidException.class,
+    MethodArgumentTypeMismatchException.class
+  })
+  public ResponseEntity<ExceptionBody> handleMethodArgumentTypeMismatchOrNotValidException(
       MethodArgumentNotValidException exception, HttpServletRequest request) {
     return ResponseEntity.badRequest()
         .body(
@@ -41,7 +45,7 @@ public class GlobalExceptionHandler {
                 500,
                 "An internal error has occurred",
                 exception.getMessage(),
-                request.getRequestURI(),
+                request.getPathInfo(),
                 Instant.now()));
   }
 }
