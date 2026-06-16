@@ -1,6 +1,6 @@
 CREATE TABLE admin
 (
-    id         UUID         NOT NULL,
+    id         UUID         DEFAULT gen_random_uuid(),
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -12,14 +12,14 @@ CREATE TABLE admin
 
 CREATE TABLE arrival
 (
-    id   UUID NOT NULL,
+    id   UUID  DEFAULT gen_random_uuid(),
     date TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_arrival PRIMARY KEY (id)
 );
 
 CREATE TABLE arrival_item
 (
-    id           UUID    NOT NULL,
+    id           UUID    DEFAULT gen_random_uuid(),
     arrival_id   UUID    NOT NULL,
     book_copy_id UUID    NOT NULL,
     quantity     INTEGER NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE arrival_item
 
 CREATE TABLE author
 (
-    id            UUID         NOT NULL,
+    id            UUID         DEFAULT gen_random_uuid(),
     full_name     VARCHAR(255) NOT NULL,
     main_language VARCHAR(255) NOT NULL,
     CONSTRAINT pk_author PRIMARY KEY (id)
@@ -36,7 +36,7 @@ CREATE TABLE author
 
 CREATE TABLE book
 (
-    id    UUID         NOT NULL,
+    id    UUID         DEFAULT gen_random_uuid(),
     title VARCHAR(255) NOT NULL,
     pages INTEGER      NOT NULL,
     isbn  VARCHAR(255) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE book_author
 
 CREATE TABLE book_copy
 (
-    id       UUID         NOT NULL,
+    id       UUID         DEFAULT gen_random_uuid(),
     book_id  UUID         NOT NULL,
     format   VARCHAR(255) NOT NULL,
     language VARCHAR(255) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE book_genres
 
 CREATE TABLE customer
 (
-    id         UUID         NOT NULL,
+    id         UUID         DEFAULT gen_random_uuid(),
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -79,14 +79,14 @@ CREATE TABLE customer
 
 CREATE TABLE genre
 (
-    id   UUID         NOT NULL,
+    id   UUID        DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk_genre PRIMARY KEY (id)
 );
 
 CREATE TABLE price_history
 (
-    id             UUID             NOT NULL,
+    id             UUID             DEFAULT gen_random_uuid(),
     book_copy_id   UUID             NOT NULL,
     price          DOUBLE PRECISION NOT NULL,
     effective_date date             NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE price_history
 
 CREATE TABLE sale
 (
-    id          UUID NOT NULL,
+    id          UUID DEFAULT gen_random_uuid(),
     date        TIMESTAMP WITHOUT TIME ZONE,
     customer_id UUID NOT NULL,
     CONSTRAINT pk_sale PRIMARY KEY (id)
@@ -103,7 +103,7 @@ CREATE TABLE sale
 
 CREATE TABLE sale_item
 (
-    id           UUID    NOT NULL,
+    id           UUID    DEFAULT gen_random_uuid(),
     sale_id      UUID    NOT NULL,
     book_copy_id UUID    NOT NULL,
     quantity     INTEGER NOT NULL,
