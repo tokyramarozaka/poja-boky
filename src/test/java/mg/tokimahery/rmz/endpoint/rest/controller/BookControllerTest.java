@@ -1,6 +1,7 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,7 +39,7 @@ class BookControllerTest {
 
   @Test
   void getBooks_ok() throws Exception {
-    given(bookService.findAll()).willReturn(List.of(harryPotter, hungerGames));
+    when(bookService.findAll()).thenReturn(List.of(harryPotter, hungerGames));
 
     mockMvc
         .perform(get("/books"))
@@ -54,8 +55,8 @@ class BookControllerTest {
   @Test
   void getBookById_shouldReturn404_with_nonExistingBook() throws Exception {
     var randomUUID = UUID.randomUUID();
-    given(bookService.findById(randomUUID))
-        .willThrow(new NotFoundException("Book with id " + randomUUID + " not found"));
+    when(bookService.findById(randomUUID))
+        .thenThrow(new NotFoundException("Book with id " + randomUUID + " not found"));
 
     mockMvc.perform(get("/books/" + randomUUID)).andExpect(status().isNotFound());
   }
