@@ -26,8 +26,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 public class JPriceHistory {
 
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "book_copy_id", nullable = false)

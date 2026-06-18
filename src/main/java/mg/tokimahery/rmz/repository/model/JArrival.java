@@ -24,8 +24,7 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Builder
 public class JArrival {
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @CreationTimestamp private Instant date;
 

@@ -27,8 +27,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 public class JAuthor {
 
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(name = "full_name", nullable = false)
   private String fullName;

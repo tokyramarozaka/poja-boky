@@ -24,8 +24,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JSaleItem {
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "sale_id", nullable = false)

@@ -23,8 +23,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JGenre {
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(nullable = false, unique = true)
   private String name;

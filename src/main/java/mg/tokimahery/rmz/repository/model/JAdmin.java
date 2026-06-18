@@ -21,8 +21,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JAdmin {
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
   private String firstName;
 
   @Column(nullable = false)

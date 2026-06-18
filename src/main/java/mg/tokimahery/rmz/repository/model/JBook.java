@@ -27,8 +27,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 public class JBook {
 
-  @Id @GeneratedValue
-  @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(nullable = false)
   private String title;
