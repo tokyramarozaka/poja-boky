@@ -2,6 +2,7 @@ package mg.tokimahery.rmz.repository.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -26,7 +27,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 public class JBook {
 
-  @Id @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(nullable = false)
   private String title;

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -26,7 +27,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 public class JAuthor {
 
-  @Id @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(name = "full_name", nullable = false)
   private String fullName;

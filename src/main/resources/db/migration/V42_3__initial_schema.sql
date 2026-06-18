@@ -1,6 +1,9 @@
+ALTER TABLE book_genre
+    DROP CONSTRAINT fk52evq6pdc5ypanf41bij5u218;
+
 CREATE TABLE admin
 (
-    id         UUID         DEFAULT gen_random_uuid(),
+    id         UUID         NOT NULL,
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -12,50 +15,18 @@ CREATE TABLE admin
 
 CREATE TABLE arrival
 (
-    id   UUID  DEFAULT gen_random_uuid(),
+    id   UUID NOT NULL,
     date TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_arrival PRIMARY KEY (id)
 );
 
 CREATE TABLE arrival_item
 (
-    id           UUID    DEFAULT gen_random_uuid(),
+    id           UUID    NOT NULL,
     arrival_id   UUID    NOT NULL,
     book_copy_id UUID    NOT NULL,
     quantity     INTEGER NOT NULL,
     CONSTRAINT pk_arrival_item PRIMARY KEY (id)
-);
-
-CREATE TABLE author
-(
-    id            UUID         DEFAULT gen_random_uuid(),
-    full_name     VARCHAR(255) NOT NULL,
-    main_language VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_author PRIMARY KEY (id)
-);
-
-CREATE TABLE book
-(
-    id    UUID         DEFAULT gen_random_uuid(),
-    title VARCHAR(255) NOT NULL,
-    pages INTEGER      NOT NULL,
-    isbn  VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_book PRIMARY KEY (id)
-);
-
-CREATE TABLE book_author
-(
-    author_id UUID NOT NULL,
-    book_id   UUID NOT NULL
-);
-
-CREATE TABLE book_copy
-(
-    id       UUID         DEFAULT gen_random_uuid(),
-    book_id  UUID         NOT NULL,
-    format   VARCHAR(255) NOT NULL,
-    language VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_book_copy PRIMARY KEY (id)
 );
 
 CREATE TABLE book_genres
@@ -66,7 +37,7 @@ CREATE TABLE book_genres
 
 CREATE TABLE customer
 (
-    id         UUID         DEFAULT gen_random_uuid(),
+    id         UUID         NOT NULL,
     first_name VARCHAR(255),
     last_name  VARCHAR(255) NOT NULL,
     email      VARCHAR(255) NOT NULL,
@@ -79,23 +50,14 @@ CREATE TABLE customer
 
 CREATE TABLE genre
 (
-    id   UUID        DEFAULT gen_random_uuid(),
+    id   UUID         NOT NULL,
     name VARCHAR(255) NOT NULL,
     CONSTRAINT pk_genre PRIMARY KEY (id)
 );
 
-CREATE TABLE price_history
-(
-    id             UUID             DEFAULT gen_random_uuid(),
-    book_copy_id   UUID             NOT NULL,
-    price          DOUBLE PRECISION NOT NULL,
-    effective_date date             NOT NULL,
-    CONSTRAINT pk_price_history PRIMARY KEY (id)
-);
-
 CREATE TABLE sale
 (
-    id          UUID DEFAULT gen_random_uuid(),
+    id          UUID NOT NULL,
     date        TIMESTAMP WITHOUT TIME ZONE,
     customer_id UUID NOT NULL,
     CONSTRAINT pk_sale PRIMARY KEY (id)
@@ -103,12 +65,18 @@ CREATE TABLE sale
 
 CREATE TABLE sale_item
 (
-    id           UUID    DEFAULT gen_random_uuid(),
+    id           UUID    NOT NULL,
     sale_id      UUID    NOT NULL,
     book_copy_id UUID    NOT NULL,
     quantity     INTEGER NOT NULL,
     CONSTRAINT pk_sale_item PRIMARY KEY (id)
 );
+
+ALTER TABLE book
+    ADD isbn VARCHAR(255);
+
+ALTER TABLE book
+    ALTER COLUMN isbn SET NOT NULL;
 
 ALTER TABLE admin
     ADD CONSTRAINT uc_admin_email UNIQUE (email);
@@ -125,12 +93,6 @@ ALTER TABLE arrival_item
 ALTER TABLE arrival_item
     ADD CONSTRAINT FK_ARRIVAL_ITEM_ON_BOOK_COPY FOREIGN KEY (book_copy_id) REFERENCES book_copy (id);
 
-ALTER TABLE book_copy
-    ADD CONSTRAINT FK_BOOK_COPY_ON_BOOK FOREIGN KEY (book_id) REFERENCES book (id);
-
-ALTER TABLE price_history
-    ADD CONSTRAINT FK_PRICE_HISTORY_ON_BOOK_COPY FOREIGN KEY (book_copy_id) REFERENCES book_copy (id);
-
 ALTER TABLE sale_item
     ADD CONSTRAINT FK_SALE_ITEM_ON_BOOK_COPY FOREIGN KEY (book_copy_id) REFERENCES book_copy (id);
 
@@ -140,14 +102,82 @@ ALTER TABLE sale_item
 ALTER TABLE sale
     ADD CONSTRAINT FK_SALE_ON_CUSTOMER FOREIGN KEY (customer_id) REFERENCES customer (id);
 
-ALTER TABLE book_author
-    ADD CONSTRAINT fk_booaut_on_j_author FOREIGN KEY (author_id) REFERENCES author (id);
-
-ALTER TABLE book_author
-    ADD CONSTRAINT fk_booaut_on_j_book FOREIGN KEY (book_id) REFERENCES book (id);
-
 ALTER TABLE book_genres
     ADD CONSTRAINT fk_boogen_on_j_book FOREIGN KEY (book_id) REFERENCES book (id);
 
 ALTER TABLE book_genres
     ADD CONSTRAINT fk_boogen_on_j_genre FOREIGN KEY (genre_id) REFERENCES genre (id);
+
+DROP TABLE book_genre CASCADE;
+
+ALTER TABLE book_author
+    DROP COLUMN author_id;
+
+ALTER TABLE book_author
+    DROP COLUMN book_id;
+
+ALTER TABLE book_author
+    ADD author_id UUID NOT NULL;
+
+ALTER TABLE book_author
+    ADD CONSTRAINT fk_booaut_on_j_author FOREIGN KEY (author_id) REFERENCES author (id);
+
+ALTER TABLE price_history
+    DROP COLUMN book_copy_id;
+
+ALTER TABLE price_history
+    DROP COLUMN id;
+
+ALTER TABLE price_history
+    DROP COLUMN price;
+
+ALTER TABLE price_history
+    ADD book_copy_id UUID NOT NULL;
+
+ALTER TABLE price_history
+    ADD CONSTRAINT FK_PRICE_HISTORY_ON_BOOK_COPY FOREIGN KEY (book_copy_id) REFERENCES book_copy (id);
+
+ALTER TABLE book_author
+    ADD book_id UUID NOT NULL;
+
+ALTER TABLE book_author
+    ADD CONSTRAINT fk_booaut_on_j_book FOREIGN KEY (book_id) REFERENCES book (id);
+
+ALTER TABLE book_copy
+    DROP COLUMN book_id;
+
+ALTER TABLE book_copy
+    DROP COLUMN id;
+
+ALTER TABLE book_copy
+    ADD book_id UUID NOT NULL;
+
+ALTER TABLE book_copy
+    ADD CONSTRAINT FK_BOOK_COPY_ON_BOOK FOREIGN KEY (book_id) REFERENCES book (id);
+
+ALTER TABLE author
+    DROP COLUMN id;
+
+ALTER TABLE author
+    ADD id UUID NOT NULL PRIMARY KEY;
+
+ALTER TABLE book
+    DROP COLUMN id;
+
+ALTER TABLE book
+    ADD id UUID NOT NULL PRIMARY KEY;
+
+ALTER TABLE book_copy
+    ADD id UUID NOT NULL PRIMARY KEY;
+
+ALTER TABLE dummy
+    ALTER COLUMN id TYPE VARCHAR(255) USING (id::VARCHAR(255));
+
+ALTER TABLE dummy_uuid
+    ALTER COLUMN id TYPE VARCHAR(255) USING (id::VARCHAR(255));
+
+ALTER TABLE price_history
+    ADD id UUID NOT NULL PRIMARY KEY;
+
+ALTER TABLE price_history
+    ADD price DOUBLE PRECISION NOT NULL;

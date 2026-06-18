@@ -2,6 +2,7 @@ package mg.tokimahery.rmz.repository.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JGenre {
-  @Id @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
 
   @Column(nullable = false, unique = true)
   private String name;

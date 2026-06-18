@@ -2,6 +2,7 @@ package mg.tokimahery.rmz.repository.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.UUID;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JAdmin {
-  @Id @UuidGenerator private UUID id;
+  @Id @GeneratedValue @UuidGenerator private UUID id;
   private String firstName;
 
   @Column(nullable = false)
