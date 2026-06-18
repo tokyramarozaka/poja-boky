@@ -25,4 +25,8 @@ public class BookCopyService {
   public BookCopy create(BookCopy bookCopy) {
     return mapper.toModel(repository.save(mapper.toEntity(bookCopy)));
   }
+
+  public List<BookCopy> getAllByBookId(UUID bookId) {
+    return repository.findAllByBook_Id(bookId);
+  }
 }
