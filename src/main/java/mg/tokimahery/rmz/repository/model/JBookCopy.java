@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import mg.tokimahery.rmz.model.BookFormat;
 import mg.tokimahery.rmz.model.Language;
+import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "book_copy")
@@ -30,7 +32,8 @@ import mg.tokimahery.rmz.model.Language;
 @Builder
 public class JBookCopy {
 
-  @Id private UUID id;
+  @Id @GeneratedValue @UuidGenerator
+  private UUID id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "book_id", nullable = false)

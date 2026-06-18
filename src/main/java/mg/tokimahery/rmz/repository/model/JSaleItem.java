@@ -2,6 +2,7 @@ package mg.tokimahery.rmz.repository.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -23,7 +24,8 @@ import org.hibernate.annotations.UuidGenerator;
 @Setter
 @Builder
 public class JSaleItem {
-  @Id @UuidGenerator private UUID id;
+  @Id @GeneratedValue
+  @UuidGenerator private UUID id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "sale_id", nullable = false)
