@@ -15,9 +15,9 @@ public class AuthorService {
   private final AuthorMapper mapper;
 
   public Author getById(UUID id) {
-    var optionalAuthor = repository.findById(id);
-    return optionalAuthor
-        .map(mapper::toModel)
-        .orElseThrow(() -> new NotFoundException("Author with id " + id + " not found"));
+    return mapper.toModel(
+        repository
+            .findById(id)
+            .orElseThrow(() -> new NotFoundException("Author with id " + id + " not found")));
   }
 }

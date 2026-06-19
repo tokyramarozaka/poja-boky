@@ -45,7 +45,4 @@ class CustomerControllerTest {
 
     mockMvc.perform(get("/customers/" + nonExistingUUID)).andExpect(status().isNotFound());
   }
-
-  @Test
-  void getById_shouldReturn400_when_customerIdIsInvalid() {}
 }
