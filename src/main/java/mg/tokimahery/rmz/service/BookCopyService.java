@@ -1,5 +1,6 @@
 package mg.tokimahery.rmz.service;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class BookCopyService {
     return bookCopies.stream().map(this::create).toList();
   }
 
+  @Transactional
   public BookCopy create(BookCopy bookCopy) {
     return mapper.toModel(repository.save(mapper.toEntity(bookCopy)));
   }

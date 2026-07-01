@@ -38,7 +38,7 @@ class AuthorControllerTest {
   }
 
   @Test
-  void getById_withNonExistingId_shouldReturn404() throws Exception {
+  void getById_withNonExistingId_shouldThrow404() throws Exception {
     var nonExistingId = UUID.randomUUID();
     when(authorService.getById(nonExistingId))
         .thenThrow(new NotFoundException("Author with id " + nonExistingId + " not found"));
@@ -47,7 +47,7 @@ class AuthorControllerTest {
   }
 
   @Test
-  void getById_withInvalidId_shouldReturn400() throws Exception {
+  void getById_withInvalidId_shouldThrow400() throws Exception {
     mockMvc.perform(get("/authors/1")).andExpect(status().isBadRequest());
   }
 }

@@ -1,5 +1,6 @@
 package mg.tokimahery.rmz.service;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class SaleService {
             .orElseThrow(() -> new NotFoundException("Sale with id " + id + " not found")));
   }
 
+  @Transactional
   public List<Sale> create(List<Sale> sales) {
     return sales.stream().map(this::create).toList();
   }

@@ -1,8 +1,8 @@
 package mg.tokimahery.rmz.endpoint.rest.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
@@ -30,19 +30,22 @@ class CustomerControllerTest {
   }
 
   @Test
-  void getById_shouldReturn200_when_customerExists() throws Exception {
+  void getById_withExistingCustomer_shouldReturn200() throws Exception {
     var existingUUID = UUID.randomUUID();
     when(customerService.findById(existingUUID)).thenReturn(rakoto);
 
-    mockMvc.perform(get("/customers/" + existingUUID)).andExpect(status().isOk());
+    mockMvc
+        .perform(get("/customers/" + existingUUID))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.firstName").value("Rakoto"))
+        .andExpect(jsonPath("$.lastName").value("Kaname"));
   }
 
   @Test
-  void getById_shouldReturn404_when_customerDoesNotExist() throws Exception {
+  void getById_withNonExistingCustomer_shouldThrow404() throws Exception {
     var nonExistingUUID = UUID.randomUUID();
     when(customerService.findById(nonExistingUUID))
         .thenThrow(new NotFoundException("Customer with id " + nonExistingUUID + " not found"));
-
     mockMvc.perform(get("/customers/" + nonExistingUUID)).andExpect(status().isNotFound());
   }
 }

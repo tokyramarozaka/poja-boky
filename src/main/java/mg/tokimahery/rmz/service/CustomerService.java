@@ -1,5 +1,6 @@
 package mg.tokimahery.rmz.service;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,15 @@ public class CustomerService {
         repository
             .findById(id)
             .orElseThrow(() -> new NotFoundException("Customer with id " + id + " not found")));
+  }
+
+  @Transactional
+  public List<Customer> create(List<Customer> customers) {
+    return customers.stream().map(this::create).toList();
+  }
+
+  public Customer create(Customer customer) {
+    var customerEntity = mapper.toEntity(customer);
+    return mapper.toModel(repository.save(customerEntity));
   }
 }

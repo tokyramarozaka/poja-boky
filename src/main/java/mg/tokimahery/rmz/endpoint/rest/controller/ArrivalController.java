@@ -11,25 +11,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/arrivals")
 @AllArgsConstructor
 public class ArrivalController {
   private final ArrivalService service;
 
-  @GetMapping("/arrivals")
+  @GetMapping("/")
   public List<Arrival> getArrivals() {
     return service.findAll();
   }
 
-  @GetMapping("/arrivals/{id}")
+  @GetMapping("/{id}")
   public Arrival getArrivalById(@PathVariable UUID id) {
     return service.findById(id);
   }
 
-  @PostMapping("/arrivals")
+  @PostMapping
   @ResponseStatus(CREATED)
   public List<Arrival> save(@RequestBody List<Arrival> arrivals) {
     return service.create(arrivals);
