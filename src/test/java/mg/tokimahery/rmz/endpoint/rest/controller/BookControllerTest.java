@@ -37,7 +37,7 @@ class BookControllerTest {
   }
 
   @Test
-  void getBooks_ok() throws Exception {
+  void getBooks_withExistingUUID_shouldReturn200() throws Exception {
     when(bookService.findAll()).thenReturn(List.of(harryPotter, hungerGames));
 
     mockMvc
@@ -47,12 +47,12 @@ class BookControllerTest {
   }
 
   @Test
-  void getBookById_shouldReturn400_with_invalidUUID() throws Exception {
+  void getBookById_withInvalidUUID_shouldThrow400() throws Exception {
     mockMvc.perform(get("/books/1")).andExpect(status().isBadRequest());
   }
 
   @Test
-  void getBookById_shouldReturn404_with_nonExistingBook() throws Exception {
+  void getBookById_withNonExistingBook_shouldThrow404() throws Exception {
     var randomUUID = UUID.randomUUID();
     when(bookService.findById(randomUUID))
         .thenThrow(new NotFoundException("Book with id " + randomUUID + " not found"));

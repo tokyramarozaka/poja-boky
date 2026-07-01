@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import mg.tokimahery.rmz.exception.NotFoundException;
 import mg.tokimahery.rmz.mapper.ArrivalMapper;
 import mg.tokimahery.rmz.model.Arrival;
+import mg.tokimahery.rmz.repository.ArrivalItemRepository;
 import mg.tokimahery.rmz.repository.ArrivalRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ArrivalService {
   private final ArrivalRepository repository;
+  private final ArrivalItemRepository arrivalItemRepository;
   private final ArrivalMapper mapper;
 
   public List<Arrival> findAll() {
@@ -35,5 +37,9 @@ public class ArrivalService {
   public Arrival create(Arrival toSave) {
     var savedJArrival = repository.save(mapper.toEntity(toSave));
     return mapper.toModel(savedJArrival);
+  }
+
+  public int getTotalQuantity(UUID bookCopyId) {
+    return arrivalItemRepository.getTotalQuantity(bookCopyId);
   }
 }
