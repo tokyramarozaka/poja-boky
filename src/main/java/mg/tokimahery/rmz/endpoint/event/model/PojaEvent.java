@@ -39,6 +39,7 @@ public abstract class PojaEvent implements Serializable {
   }
 
   public String getEventSource() {
-    return "mg.tokimahery.rmz.event1";
+    if (getEventStack().equals(EVENT_STACK_1)) return "mg.tokimahery.rmz.event1";
+    return "mg.tokimahery.rmz.event2";
   }
 }
